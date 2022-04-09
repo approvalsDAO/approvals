@@ -15,18 +15,18 @@ task('create-profile', 'creates a profile').setAction(async ({}, hre) => {
     handle: 'zer0dot',
     imageURI:
       'https://ipfs.fleek.co/ipfs/ghostplantghostplantghostplantghostplantghostplantghostplan',
-      followModule: ZERO_ADDRESS,
-    followModuleData: [],
+    followModule: ZERO_ADDRESS,
+    followModuleInitData: [],
     followNFTURI:
       'https://ipfs.fleek.co/ipfs/ghostplantghostplantghostplantghostplantghostplantghostplan',
   };
 
-    await waitForTx(lensHub.connect(user).createProfile(inputStruct));
+  await waitForTx(lensHub.connect(user).createProfile(inputStruct));
 
-    console.log(`Total supply (should be 1): ${await lensHub.totalSupply()}`);
-    console.log(
-      `Profile owner: ${await lensHub.ownerOf(1)}, user address (should be the same): ${user.address}`
-    );
-    console.log(`Profile ID by handle: ${await lensHub.getProfileIdByHandle('zer0dot')}`);
+  console.log(`Total supply (should be 1): ${await lensHub.totalSupply()}`);
+  console.log(
+    `Profile owner: ${await lensHub.ownerOf(1)}, user address (should be the same): ${user.address}`
+  );
+  console.log(`Profile ID by handle: ${await lensHub.getProfileIdByHandle('zer0dot')}`);
 });
 
