@@ -62,6 +62,35 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "uint256",
+        name: "profileId",
+        type: "uint256",
+      },
+      {
+        internalType: "address",
+        name: "follower",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "followNFTTokenId",
+        type: "uint256",
+      },
+    ],
+    name: "isFollowing",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
         name: "follower",
         type: "address",
@@ -80,29 +109,6 @@ const _abi = [
     name: "processFollow",
     outputs: [],
     stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "profileId",
-        type: "uint256",
-      },
-      {
-        internalType: "address",
-        name: "follower",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "followNFTTokenId",
-        type: "uint256",
-      },
-    ],
-    name: "validateFollow",
-    outputs: [],
-    stateMutability: "view",
     type: "function",
   },
 ];

@@ -21,7 +21,7 @@ export type CreateProfileDataStruct = {
   handle: string;
   imageURI: string;
   followModule: string;
-  followModuleData: BytesLike;
+  followModuleInitData: BytesLike;
   followNFTURI: string;
 };
 
@@ -37,7 +37,7 @@ export type CreateProfileDataStructOutput = [
   handle: string;
   imageURI: string;
   followModule: string;
-  followModuleData: string;
+  followModuleInitData: string;
   followNFTURI: string;
 };
 

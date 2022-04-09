@@ -58,10 +58,11 @@ export type CommentDataStruct = {
   contentURI: string;
   profileIdPointed: BigNumberish;
   pubIdPointed: BigNumberish;
-  collectModule: string;
-  collectModuleData: BytesLike;
-  referenceModule: string;
   referenceModuleData: BytesLike;
+  collectModule: string;
+  collectModuleInitData: BytesLike;
+  referenceModule: string;
+  referenceModuleInitData: BytesLike;
 };
 
 export type CommentDataStructOutput = [
@@ -72,16 +73,18 @@ export type CommentDataStructOutput = [
   string,
   string,
   string,
+  string,
   string
 ] & {
   profileId: BigNumber;
   contentURI: string;
   profileIdPointed: BigNumber;
   pubIdPointed: BigNumber;
-  collectModule: string;
-  collectModuleData: string;
-  referenceModule: string;
   referenceModuleData: string;
+  collectModule: string;
+  collectModuleInitData: string;
+  referenceModule: string;
+  referenceModuleInitData: string;
 };
 
 export type CommentWithSigDataStruct = {
@@ -89,10 +92,11 @@ export type CommentWithSigDataStruct = {
   contentURI: string;
   profileIdPointed: BigNumberish;
   pubIdPointed: BigNumberish;
-  collectModule: string;
-  collectModuleData: BytesLike;
-  referenceModule: string;
   referenceModuleData: BytesLike;
+  collectModule: string;
+  collectModuleInitData: BytesLike;
+  referenceModule: string;
+  referenceModuleInitData: BytesLike;
   sig: EIP712SignatureStruct;
 };
 
@@ -105,16 +109,18 @@ export type CommentWithSigDataStructOutput = [
   string,
   string,
   string,
+  string,
   EIP712SignatureStructOutput
 ] & {
   profileId: BigNumber;
   contentURI: string;
   profileIdPointed: BigNumber;
   pubIdPointed: BigNumber;
-  collectModule: string;
-  collectModuleData: string;
-  referenceModule: string;
   referenceModuleData: string;
+  collectModule: string;
+  collectModuleInitData: string;
+  referenceModule: string;
+  referenceModuleInitData: string;
   sig: EIP712SignatureStructOutput;
 };
 
@@ -123,7 +129,7 @@ export type CreateProfileDataStruct = {
   handle: string;
   imageURI: string;
   followModule: string;
-  followModuleData: BytesLike;
+  followModuleInitData: BytesLike;
   followNFTURI: string;
 };
 
@@ -139,7 +145,7 @@ export type CreateProfileDataStructOutput = [
   handle: string;
   imageURI: string;
   followModule: string;
-  followModuleData: string;
+  followModuleInitData: string;
   followNFTURI: string;
 };
 
@@ -216,8 +222,9 @@ export type MirrorDataStruct = {
   profileId: BigNumberish;
   profileIdPointed: BigNumberish;
   pubIdPointed: BigNumberish;
-  referenceModule: string;
   referenceModuleData: BytesLike;
+  referenceModule: string;
+  referenceModuleInitData: BytesLike;
 };
 
 export type MirrorDataStructOutput = [
@@ -225,21 +232,24 @@ export type MirrorDataStructOutput = [
   BigNumber,
   BigNumber,
   string,
+  string,
   string
 ] & {
   profileId: BigNumber;
   profileIdPointed: BigNumber;
   pubIdPointed: BigNumber;
-  referenceModule: string;
   referenceModuleData: string;
+  referenceModule: string;
+  referenceModuleInitData: string;
 };
 
 export type MirrorWithSigDataStruct = {
   profileId: BigNumberish;
   profileIdPointed: BigNumberish;
   pubIdPointed: BigNumberish;
-  referenceModule: string;
   referenceModuleData: BytesLike;
+  referenceModule: string;
+  referenceModuleInitData: BytesLike;
   sig: EIP712SignatureStruct;
 };
 
@@ -249,13 +259,15 @@ export type MirrorWithSigDataStructOutput = [
   BigNumber,
   string,
   string,
+  string,
   EIP712SignatureStructOutput
 ] & {
   profileId: BigNumber;
   profileIdPointed: BigNumber;
   pubIdPointed: BigNumber;
-  referenceModule: string;
   referenceModuleData: string;
+  referenceModule: string;
+  referenceModuleInitData: string;
   sig: EIP712SignatureStructOutput;
 };
 
@@ -263,9 +275,9 @@ export type PostDataStruct = {
   profileId: BigNumberish;
   contentURI: string;
   collectModule: string;
-  collectModuleData: BytesLike;
+  collectModuleInitData: BytesLike;
   referenceModule: string;
-  referenceModuleData: BytesLike;
+  referenceModuleInitData: BytesLike;
 };
 
 export type PostDataStructOutput = [
@@ -279,18 +291,18 @@ export type PostDataStructOutput = [
   profileId: BigNumber;
   contentURI: string;
   collectModule: string;
-  collectModuleData: string;
+  collectModuleInitData: string;
   referenceModule: string;
-  referenceModuleData: string;
+  referenceModuleInitData: string;
 };
 
 export type PostWithSigDataStruct = {
   profileId: BigNumberish;
   contentURI: string;
   collectModule: string;
-  collectModuleData: BytesLike;
+  collectModuleInitData: BytesLike;
   referenceModule: string;
-  referenceModuleData: BytesLike;
+  referenceModuleInitData: BytesLike;
   sig: EIP712SignatureStruct;
 };
 
@@ -306,9 +318,9 @@ export type PostWithSigDataStructOutput = [
   profileId: BigNumber;
   contentURI: string;
   collectModule: string;
-  collectModuleData: string;
+  collectModuleInitData: string;
   referenceModule: string;
-  referenceModuleData: string;
+  referenceModuleInitData: string;
   sig: EIP712SignatureStructOutput;
 };
 
@@ -343,7 +355,7 @@ export type SetDispatcherWithSigDataStructOutput = [
 export type SetFollowModuleWithSigDataStruct = {
   profileId: BigNumberish;
   followModule: string;
-  followModuleData: BytesLike;
+  followModuleInitData: BytesLike;
   sig: EIP712SignatureStruct;
 };
 
@@ -355,7 +367,7 @@ export type SetFollowModuleWithSigDataStructOutput = [
 ] & {
   profileId: BigNumber;
   followModule: string;
-  followModuleData: string;
+  followModuleInitData: string;
   sig: EIP712SignatureStructOutput;
 };
 
@@ -395,8 +407,8 @@ export interface ILensHubInterface extends utils.Interface {
   functions: {
     "collect(uint256,uint256,bytes)": FunctionFragment;
     "collectWithSig((address,uint256,uint256,bytes,(uint8,bytes32,bytes32,uint256)))": FunctionFragment;
-    "comment((uint256,string,uint256,uint256,address,bytes,address,bytes))": FunctionFragment;
-    "commentWithSig((uint256,string,uint256,uint256,address,bytes,address,bytes,(uint8,bytes32,bytes32,uint256)))": FunctionFragment;
+    "comment((uint256,string,uint256,uint256,bytes,address,bytes,address,bytes))": FunctionFragment;
+    "commentWithSig((uint256,string,uint256,uint256,bytes,address,bytes,address,bytes,(uint8,bytes32,bytes32,uint256)))": FunctionFragment;
     "createProfile((address,string,string,address,bytes,string))": FunctionFragment;
     "defaultProfile(address)": FunctionFragment;
     "emitCollectNFTTransferEvent(uint256,uint256,uint256,address,address)": FunctionFragment;
@@ -424,8 +436,8 @@ export interface ILensHubInterface extends utils.Interface {
     "isFollowModuleWhitelisted(address)": FunctionFragment;
     "isProfileCreatorWhitelisted(address)": FunctionFragment;
     "isReferenceModuleWhitelisted(address)": FunctionFragment;
-    "mirror((uint256,uint256,uint256,address,bytes))": FunctionFragment;
-    "mirrorWithSig((uint256,uint256,uint256,address,bytes,(uint8,bytes32,bytes32,uint256)))": FunctionFragment;
+    "mirror((uint256,uint256,uint256,bytes,address,bytes))": FunctionFragment;
+    "mirrorWithSig((uint256,uint256,uint256,bytes,address,bytes,(uint8,bytes32,bytes32,uint256)))": FunctionFragment;
     "post((uint256,string,address,bytes,address,bytes))": FunctionFragment;
     "postWithSig((uint256,string,address,bytes,address,bytes,(uint8,bytes32,bytes32,uint256)))": FunctionFragment;
     "setDefaultProfile(uint256)": FunctionFragment;
@@ -1082,7 +1094,7 @@ export interface ILensHub extends BaseContract {
     setFollowModule(
       profileId: BigNumberish,
       followModule: string,
-      followModuleData: BytesLike,
+      followModuleInitData: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -1365,7 +1377,7 @@ export interface ILensHub extends BaseContract {
   setFollowModule(
     profileId: BigNumberish,
     followModule: string,
-    followModuleData: BytesLike,
+    followModuleInitData: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -1436,24 +1448,27 @@ export interface ILensHub extends BaseContract {
       pubId: BigNumberish,
       data: BytesLike,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber>;
 
     collectWithSig(
       vars: CollectWithSigDataStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber>;
 
-    comment(vars: CommentDataStruct, overrides?: CallOverrides): Promise<void>;
+    comment(
+      vars: CommentDataStruct,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     commentWithSig(
       vars: CommentWithSigDataStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber>;
 
     createProfile(
       vars: CreateProfileDataStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber>;
 
     defaultProfile(
       wallet: string,
@@ -1481,12 +1496,12 @@ export interface ILensHub extends BaseContract {
       profileIds: BigNumberish[],
       datas: BytesLike[],
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber[]>;
 
     followWithSig(
       vars: FollowWithSigDataStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber[]>;
 
     getCollectModule(
       profileId: BigNumberish,
@@ -1599,19 +1614,22 @@ export interface ILensHub extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    mirror(vars: MirrorDataStruct, overrides?: CallOverrides): Promise<void>;
+    mirror(
+      vars: MirrorDataStruct,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     mirrorWithSig(
       vars: MirrorWithSigDataStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber>;
 
-    post(vars: PostDataStruct, overrides?: CallOverrides): Promise<void>;
+    post(vars: PostDataStruct, overrides?: CallOverrides): Promise<BigNumber>;
 
     postWithSig(
       vars: PostWithSigDataStruct,
       overrides?: CallOverrides
-    ): Promise<void>;
+    ): Promise<BigNumber>;
 
     setDefaultProfile(
       profileId: BigNumberish,
@@ -1642,7 +1660,7 @@ export interface ILensHub extends BaseContract {
     setFollowModule(
       profileId: BigNumberish,
       followModule: string,
-      followModuleData: BytesLike,
+      followModuleInitData: BytesLike,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1928,7 +1946,7 @@ export interface ILensHub extends BaseContract {
     setFollowModule(
       profileId: BigNumberish,
       followModule: string,
-      followModuleData: BytesLike,
+      followModuleInitData: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -2215,7 +2233,7 @@ export interface ILensHub extends BaseContract {
     setFollowModule(
       profileId: BigNumberish,
       followModule: string,
-      followModuleData: BytesLike,
+      followModuleInitData: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 

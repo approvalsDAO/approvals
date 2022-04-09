@@ -17,52 +17,14 @@ import { FunctionFragment, Result } from "@ethersproject/abi";
 import { Listener, Provider } from "@ethersproject/providers";
 import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
 
-export type ProfilePublicationDataStruct = {
-  collectLimit: BigNumberish;
-  currentCollects: BigNumberish;
-  amount: BigNumberish;
-  currency: string;
-  recipient: string;
-  referralFee: BigNumberish;
-  followerOnly: boolean;
-};
-
-export type ProfilePublicationDataStructOutput = [
-  BigNumber,
-  BigNumber,
-  BigNumber,
-  string,
-  string,
-  number,
-  boolean
-] & {
-  collectLimit: BigNumber;
-  currentCollects: BigNumber;
-  amount: BigNumber;
-  currency: string;
-  recipient: string;
-  referralFee: number;
-  followerOnly: boolean;
-};
-
-export interface LimitedFeeCollectModuleInterface extends utils.Interface {
+export interface FreeCollectModuleInterface extends utils.Interface {
   functions: {
     "HUB()": FunctionFragment;
-    "MODULE_GLOBALS()": FunctionFragment;
-    "getPublicationData(uint256,uint256)": FunctionFragment;
     "initializePublicationCollectModule(uint256,uint256,bytes)": FunctionFragment;
     "processCollect(uint256,address,uint256,uint256,bytes)": FunctionFragment;
   };
 
   encodeFunctionData(functionFragment: "HUB", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "MODULE_GLOBALS",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getPublicationData",
-    values: [BigNumberish, BigNumberish]
-  ): string;
   encodeFunctionData(
     functionFragment: "initializePublicationCollectModule",
     values: [BigNumberish, BigNumberish, BytesLike]
@@ -73,14 +35,6 @@ export interface LimitedFeeCollectModuleInterface extends utils.Interface {
   ): string;
 
   decodeFunctionResult(functionFragment: "HUB", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "MODULE_GLOBALS",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getPublicationData",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "initializePublicationCollectModule",
     data: BytesLike
@@ -93,12 +47,12 @@ export interface LimitedFeeCollectModuleInterface extends utils.Interface {
   events: {};
 }
 
-export interface LimitedFeeCollectModule extends BaseContract {
+export interface FreeCollectModule extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: LimitedFeeCollectModuleInterface;
+  interface: FreeCollectModuleInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -122,14 +76,6 @@ export interface LimitedFeeCollectModule extends BaseContract {
   functions: {
     HUB(overrides?: CallOverrides): Promise<[string]>;
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<[string]>;
-
-    getPublicationData(
-      profileId: BigNumberish,
-      pubId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[ProfilePublicationDataStructOutput]>;
-
     initializePublicationCollectModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
@@ -143,19 +89,11 @@ export interface LimitedFeeCollectModule extends BaseContract {
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<ContractTransaction>;
+      overrides?: CallOverrides
+    ): Promise<[void]>;
   };
 
   HUB(overrides?: CallOverrides): Promise<string>;
-
-  MODULE_GLOBALS(overrides?: CallOverrides): Promise<string>;
-
-  getPublicationData(
-    profileId: BigNumberish,
-    pubId: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<ProfilePublicationDataStructOutput>;
 
   initializePublicationCollectModule(
     profileId: BigNumberish,
@@ -170,19 +108,11 @@ export interface LimitedFeeCollectModule extends BaseContract {
     profileId: BigNumberish,
     pubId: BigNumberish,
     data: BytesLike,
-    overrides?: Overrides & { from?: string | Promise<string> }
-  ): Promise<ContractTransaction>;
+    overrides?: CallOverrides
+  ): Promise<void>;
 
   callStatic: {
     HUB(overrides?: CallOverrides): Promise<string>;
-
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<string>;
-
-    getPublicationData(
-      profileId: BigNumberish,
-      pubId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<ProfilePublicationDataStructOutput>;
 
     initializePublicationCollectModule(
       profileId: BigNumberish,
@@ -206,14 +136,6 @@ export interface LimitedFeeCollectModule extends BaseContract {
   estimateGas: {
     HUB(overrides?: CallOverrides): Promise<BigNumber>;
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getPublicationData(
-      profileId: BigNumberish,
-      pubId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     initializePublicationCollectModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
@@ -227,21 +149,13 @@ export interface LimitedFeeCollectModule extends BaseContract {
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
   populateTransaction: {
     HUB(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    MODULE_GLOBALS(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    getPublicationData(
-      profileId: BigNumberish,
-      pubId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     initializePublicationCollectModule(
       profileId: BigNumberish,
       pubId: BigNumberish,
@@ -255,7 +169,7 @@ export interface LimitedFeeCollectModule extends BaseContract {
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
-      overrides?: Overrides & { from?: string | Promise<string> }
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };
 }

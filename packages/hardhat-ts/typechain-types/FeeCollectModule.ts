@@ -19,21 +19,24 @@ import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
 
 export type ProfilePublicationDataStruct = {
   amount: BigNumberish;
-  recipient: string;
   currency: string;
+  recipient: string;
   referralFee: BigNumberish;
+  followerOnly: boolean;
 };
 
 export type ProfilePublicationDataStructOutput = [
   BigNumber,
   string,
   string,
-  number
+  number,
+  boolean
 ] & {
   amount: BigNumber;
-  recipient: string;
   currency: string;
+  recipient: string;
   referralFee: number;
+  followerOnly: boolean;
 };
 
 export interface FeeCollectModuleInterface extends utils.Interface {

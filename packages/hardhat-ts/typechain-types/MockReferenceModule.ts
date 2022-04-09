@@ -20,8 +20,8 @@ import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
 export interface MockReferenceModuleInterface extends utils.Interface {
   functions: {
     "initializeReferenceModule(uint256,uint256,bytes)": FunctionFragment;
-    "processComment(uint256,uint256,uint256)": FunctionFragment;
-    "processMirror(uint256,uint256,uint256)": FunctionFragment;
+    "processComment(uint256,uint256,uint256,bytes)": FunctionFragment;
+    "processMirror(uint256,uint256,uint256,bytes)": FunctionFragment;
   };
 
   encodeFunctionData(
@@ -30,11 +30,11 @@ export interface MockReferenceModuleInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "processComment",
-    values: [BigNumberish, BigNumberish, BigNumberish]
+    values: [BigNumberish, BigNumberish, BigNumberish, BytesLike]
   ): string;
   encodeFunctionData(
     functionFragment: "processMirror",
-    values: [BigNumberish, BigNumberish, BigNumberish]
+    values: [BigNumberish, BigNumberish, BigNumberish, BytesLike]
   ): string;
 
   decodeFunctionResult(
@@ -91,6 +91,7 @@ export interface MockReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
@@ -98,6 +99,7 @@ export interface MockReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
   };
@@ -113,6 +115,7 @@ export interface MockReferenceModule extends BaseContract {
     profileId: BigNumberish,
     profileIdPointed: BigNumberish,
     pubIdPointed: BigNumberish,
+    data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -120,6 +123,7 @@ export interface MockReferenceModule extends BaseContract {
     profileId: BigNumberish,
     profileIdPointed: BigNumberish,
     pubIdPointed: BigNumberish,
+    data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
@@ -135,6 +139,7 @@ export interface MockReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -142,6 +147,7 @@ export interface MockReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -160,6 +166,7 @@ export interface MockReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
@@ -167,6 +174,7 @@ export interface MockReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
   };
@@ -183,6 +191,7 @@ export interface MockReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
@@ -190,6 +199,7 @@ export interface MockReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };

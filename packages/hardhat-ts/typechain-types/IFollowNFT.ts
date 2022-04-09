@@ -205,7 +205,7 @@ export interface IFollowNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    mint(to: string, overrides?: CallOverrides): Promise<void>;
+    mint(to: string, overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   filters: {};

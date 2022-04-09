@@ -25,8 +25,8 @@ export interface ApprovalFollowModuleInterface extends utils.Interface {
     "initializeFollowModule(uint256,bytes)": FunctionFragment;
     "isApproved(address,uint256,address)": FunctionFragment;
     "isApprovedArray(address,uint256,address[])": FunctionFragment;
+    "isFollowing(uint256,address,uint256)": FunctionFragment;
     "processFollow(address,uint256,bytes)": FunctionFragment;
-    "validateFollow(uint256,address,uint256)": FunctionFragment;
   };
 
   encodeFunctionData(functionFragment: "HUB", values?: undefined): string;
@@ -51,12 +51,12 @@ export interface ApprovalFollowModuleInterface extends utils.Interface {
     values: [string, BigNumberish, string[]]
   ): string;
   encodeFunctionData(
-    functionFragment: "processFollow",
-    values: [string, BigNumberish, BytesLike]
+    functionFragment: "isFollowing",
+    values: [BigNumberish, string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "validateFollow",
-    values: [BigNumberish, string, BigNumberish]
+    functionFragment: "processFollow",
+    values: [string, BigNumberish, BytesLike]
   ): string;
 
   decodeFunctionResult(functionFragment: "HUB", data: BytesLike): Result;
@@ -75,11 +75,11 @@ export interface ApprovalFollowModuleInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "processFollow",
+    functionFragment: "isFollowing",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "validateFollow",
+    functionFragment: "processFollow",
     data: BytesLike
   ): Result;
 
@@ -150,19 +150,19 @@ export interface ApprovalFollowModule extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[boolean[]]>;
 
+    isFollowing(
+      profileId: BigNumberish,
+      follower: string,
+      followNFTTokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
+
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
-
-    validateFollow(
-      profileId: BigNumberish,
-      follower: string,
-      followNFTTokenId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[void]>;
   };
 
   HUB(overrides?: CallOverrides): Promise<string>;
@@ -202,19 +202,19 @@ export interface ApprovalFollowModule extends BaseContract {
     overrides?: CallOverrides
   ): Promise<boolean[]>;
 
+  isFollowing(
+    profileId: BigNumberish,
+    follower: string,
+    followNFTTokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
   processFollow(
     follower: string,
     profileId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
-
-  validateFollow(
-    profileId: BigNumberish,
-    follower: string,
-    followNFTTokenId: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<void>;
 
   callStatic: {
     HUB(overrides?: CallOverrides): Promise<string>;
@@ -254,17 +254,17 @@ export interface ApprovalFollowModule extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean[]>;
 
+    isFollowing(
+      profileId: BigNumberish,
+      follower: string,
+      followNFTTokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    validateFollow(
-      profileId: BigNumberish,
-      follower: string,
-      followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -309,18 +309,18 @@ export interface ApprovalFollowModule extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    isFollowing(
+      profileId: BigNumberish,
+      follower: string,
+      followNFTTokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    validateFollow(
-      profileId: BigNumberish,
-      follower: string,
-      followNFTTokenId: BigNumberish,
-      overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
@@ -362,18 +362,18 @@ export interface ApprovalFollowModule extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    isFollowing(
+      profileId: BigNumberish,
+      follower: string,
+      followNFTTokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    validateFollow(
-      profileId: BigNumberish,
-      follower: string,
-      followNFTTokenId: BigNumberish,
-      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };
 }

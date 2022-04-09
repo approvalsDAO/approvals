@@ -24,6 +24,7 @@ export type ProfilePublicationDataStruct = {
   currency: string;
   recipient: string;
   referralFee: BigNumberish;
+  followerOnly: boolean;
   endTimestamp: BigNumberish;
 };
 
@@ -34,6 +35,7 @@ export type ProfilePublicationDataStructOutput = [
   string,
   string,
   number,
+  boolean,
   number
 ] & {
   collectLimit: BigNumber;
@@ -42,6 +44,7 @@ export type ProfilePublicationDataStructOutput = [
   currency: string;
   recipient: string;
   referralFee: number;
+  followerOnly: boolean;
   endTimestamp: number;
 };
 

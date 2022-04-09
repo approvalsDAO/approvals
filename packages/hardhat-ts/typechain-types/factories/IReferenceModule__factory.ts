@@ -56,6 +56,11 @@ const _abi = [
         name: "pubIdPointed",
         type: "uint256",
       },
+      {
+        internalType: "bytes",
+        name: "data",
+        type: "bytes",
+      },
     ],
     name: "processComment",
     outputs: [],
@@ -78,6 +83,11 @@ const _abi = [
         internalType: "uint256",
         name: "pubIdPointed",
         type: "uint256",
+      },
+      {
+        internalType: "bytes",
+        name: "data",
+        type: "bytes",
       },
     ],
     name: "processMirror",

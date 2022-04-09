@@ -19,8 +19,8 @@ export interface FollowerOnlyReferenceModuleInterface extends utils.Interface {
   functions: {
     "HUB()": FunctionFragment;
     "initializeReferenceModule(uint256,uint256,bytes)": FunctionFragment;
-    "processComment(uint256,uint256,uint256)": FunctionFragment;
-    "processMirror(uint256,uint256,uint256)": FunctionFragment;
+    "processComment(uint256,uint256,uint256,bytes)": FunctionFragment;
+    "processMirror(uint256,uint256,uint256,bytes)": FunctionFragment;
   };
 
   encodeFunctionData(functionFragment: "HUB", values?: undefined): string;
@@ -30,11 +30,11 @@ export interface FollowerOnlyReferenceModuleInterface extends utils.Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "processComment",
-    values: [BigNumberish, BigNumberish, BigNumberish]
+    values: [BigNumberish, BigNumberish, BigNumberish, BytesLike]
   ): string;
   encodeFunctionData(
     functionFragment: "processMirror",
-    values: [BigNumberish, BigNumberish, BigNumberish]
+    values: [BigNumberish, BigNumberish, BigNumberish, BytesLike]
   ): string;
 
   decodeFunctionResult(functionFragment: "HUB", data: BytesLike): Result;
@@ -94,6 +94,7 @@ export interface FollowerOnlyReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: CallOverrides
     ): Promise<[void]>;
 
@@ -101,6 +102,7 @@ export interface FollowerOnlyReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: CallOverrides
     ): Promise<[void]>;
   };
@@ -118,6 +120,7 @@ export interface FollowerOnlyReferenceModule extends BaseContract {
     profileId: BigNumberish,
     profileIdPointed: BigNumberish,
     pubIdPointed: BigNumberish,
+    data: BytesLike,
     overrides?: CallOverrides
   ): Promise<void>;
 
@@ -125,6 +128,7 @@ export interface FollowerOnlyReferenceModule extends BaseContract {
     profileId: BigNumberish,
     profileIdPointed: BigNumberish,
     pubIdPointed: BigNumberish,
+    data: BytesLike,
     overrides?: CallOverrides
   ): Promise<void>;
 
@@ -142,6 +146,7 @@ export interface FollowerOnlyReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -149,6 +154,7 @@ export interface FollowerOnlyReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -169,6 +175,7 @@ export interface FollowerOnlyReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -176,6 +183,7 @@ export interface FollowerOnlyReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
@@ -194,6 +202,7 @@ export interface FollowerOnlyReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -201,6 +210,7 @@ export interface FollowerOnlyReferenceModule extends BaseContract {
       profileId: BigNumberish,
       profileIdPointed: BigNumberish,
       pubIdPointed: BigNumberish,
+      data: BytesLike,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };

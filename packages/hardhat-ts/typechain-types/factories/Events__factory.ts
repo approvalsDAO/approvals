@@ -190,6 +190,12 @@ const _abi = [
       },
       {
         indexed: false,
+        internalType: "bytes",
+        name: "collectModuleData",
+        type: "bytes",
+      },
+      {
+        indexed: false,
         internalType: "uint256",
         name: "timestamp",
         type: "uint256",
@@ -230,6 +236,12 @@ const _abi = [
         internalType: "uint256",
         name: "pubIdPointed",
         type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "bytes",
+        name: "referenceModuleData",
+        type: "bytes",
       },
       {
         indexed: false,
@@ -558,6 +570,37 @@ const _abi = [
       {
         indexed: true,
         internalType: "address",
+        name: "follower",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256[]",
+        name: "profileIds",
+        type: "uint256[]",
+      },
+      {
+        indexed: false,
+        internalType: "bytes[]",
+        name: "followModuleDatas",
+        type: "bytes[]",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "timestamp",
+        type: "uint256",
+      },
+    ],
+    name: "Followed",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
         name: "owner",
         type: "address",
       },
@@ -677,6 +720,12 @@ const _abi = [
         internalType: "uint256",
         name: "pubIdPointed",
         type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "bytes",
+        name: "referenceModuleData",
+        type: "bytes",
       },
       {
         indexed: false,
@@ -997,6 +1046,37 @@ const _abi = [
       {
         indexed: true,
         internalType: "address",
+        name: "user",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "profileId",
+        type: "uint256",
+      },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "metadata",
+        type: "string",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "timestamp",
+        type: "uint256",
+      },
+    ],
+    name: "ProfileMetadataSet",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
         name: "referenceModule",
         type: "address",
       },
@@ -1050,7 +1130,7 @@ const _abi = [
 ];
 
 const _bytecode =
-  "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220c48c855f8569723e58fd1f7920767e976047142206d10df223303ebca15221a664736f6c634300080a0033";
+  "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122096c33e5ecfb9561b6402b25405e0c80bbb6f84a1aa0af74ebd7f4f1815da661b64736f6c634300080a0033";
 
 type EventsConstructorParams =
   | [signer?: Signer]

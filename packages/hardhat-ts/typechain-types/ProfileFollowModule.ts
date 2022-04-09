@@ -17,8 +17,7 @@ import { FunctionFragment, Result } from "@ethersproject/abi";
 import { Listener, Provider } from "@ethersproject/providers";
 import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
 
-export interface FollowValidatorFollowModuleBaseInterface
-  extends utils.Interface {
+export interface ProfileFollowModuleInterface extends utils.Interface {
   functions: {
     "HUB()": FunctionFragment;
     "followModuleTransferHook(uint256,address,address,uint256)": FunctionFragment;
@@ -66,12 +65,12 @@ export interface FollowValidatorFollowModuleBaseInterface
   events: {};
 }
 
-export interface FollowValidatorFollowModuleBase extends BaseContract {
+export interface ProfileFollowModule extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: FollowValidatorFollowModuleBaseInterface;
+  interface: ProfileFollowModuleInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,

@@ -21,8 +21,8 @@ export interface IFollowModuleInterface extends utils.Interface {
   functions: {
     "followModuleTransferHook(uint256,address,address,uint256)": FunctionFragment;
     "initializeFollowModule(uint256,bytes)": FunctionFragment;
+    "isFollowing(uint256,address,uint256)": FunctionFragment;
     "processFollow(address,uint256,bytes)": FunctionFragment;
-    "validateFollow(uint256,address,uint256)": FunctionFragment;
   };
 
   encodeFunctionData(
@@ -34,12 +34,12 @@ export interface IFollowModuleInterface extends utils.Interface {
     values: [BigNumberish, BytesLike]
   ): string;
   encodeFunctionData(
-    functionFragment: "processFollow",
-    values: [string, BigNumberish, BytesLike]
+    functionFragment: "isFollowing",
+    values: [BigNumberish, string, BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "validateFollow",
-    values: [BigNumberish, string, BigNumberish]
+    functionFragment: "processFollow",
+    values: [string, BigNumberish, BytesLike]
   ): string;
 
   decodeFunctionResult(
@@ -51,11 +51,11 @@ export interface IFollowModuleInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "processFollow",
+    functionFragment: "isFollowing",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "validateFollow",
+    functionFragment: "processFollow",
     data: BytesLike
   ): Result;
 
@@ -103,19 +103,19 @@ export interface IFollowModule extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
 
+    isFollowing(
+      profileId: BigNumberish,
+      follower: string,
+      followNFTTokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
+
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<ContractTransaction>;
-
-    validateFollow(
-      profileId: BigNumberish,
-      follower: string,
-      followNFTTokenId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[void]>;
   };
 
   followModuleTransferHook(
@@ -132,19 +132,19 @@ export interface IFollowModule extends BaseContract {
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
 
+  isFollowing(
+    profileId: BigNumberish,
+    follower: string,
+    followNFTTokenId: BigNumberish,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
   processFollow(
     follower: string,
     profileId: BigNumberish,
     data: BytesLike,
     overrides?: Overrides & { from?: string | Promise<string> }
   ): Promise<ContractTransaction>;
-
-  validateFollow(
-    profileId: BigNumberish,
-    follower: string,
-    followNFTTokenId: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<void>;
 
   callStatic: {
     followModuleTransferHook(
@@ -161,17 +161,17 @@ export interface IFollowModule extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
+    isFollowing(
+      profileId: BigNumberish,
+      follower: string,
+      followNFTTokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    validateFollow(
-      profileId: BigNumberish,
-      follower: string,
-      followNFTTokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<void>;
   };
@@ -193,18 +193,18 @@ export interface IFollowModule extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
+    isFollowing(
+      profileId: BigNumberish,
+      follower: string,
+      followNFTTokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<BigNumber>;
-
-    validateFollow(
-      profileId: BigNumberish,
-      follower: string,
-      followNFTTokenId: BigNumberish,
-      overrides?: CallOverrides
     ): Promise<BigNumber>;
   };
 
@@ -223,18 +223,18 @@ export interface IFollowModule extends BaseContract {
       overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
+    isFollowing(
+      profileId: BigNumberish,
+      follower: string,
+      followNFTTokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     processFollow(
       follower: string,
       profileId: BigNumberish,
       data: BytesLike,
       overrides?: Overrides & { from?: string | Promise<string> }
-    ): Promise<PopulatedTransaction>;
-
-    validateFollow(
-      profileId: BigNumberish,
-      follower: string,
-      followNFTTokenId: BigNumberish,
-      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
   };
 }

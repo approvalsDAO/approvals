@@ -15,8 +15,8 @@ export interface EventsInterface extends utils.Interface {
     "CollectNFTDeployed(uint256,uint256,address,uint256)": EventFragment;
     "CollectNFTInitialized(uint256,uint256,uint256)": EventFragment;
     "CollectNFTTransferred(uint256,uint256,uint256,address,address,uint256)": EventFragment;
-    "Collected(address,uint256,uint256,uint256,uint256,uint256)": EventFragment;
-    "CommentCreated(uint256,uint256,string,uint256,uint256,address,bytes,address,bytes,uint256)": EventFragment;
+    "Collected(address,uint256,uint256,uint256,uint256,bytes,uint256)": EventFragment;
+    "CommentCreated(uint256,uint256,string,uint256,uint256,bytes,address,bytes,address,bytes,uint256)": EventFragment;
     "DefaultProfileSet(address,uint256,uint256)": EventFragment;
     "DispatcherSet(uint256,address,uint256)": EventFragment;
     "EmergencyAdminSet(address,address,address,uint256)": EventFragment;
@@ -28,10 +28,11 @@ export interface EventsInterface extends utils.Interface {
     "FollowNFTInitialized(uint256,uint256)": EventFragment;
     "FollowNFTTransferred(uint256,uint256,address,address,uint256)": EventFragment;
     "FollowNFTURISet(uint256,string,uint256)": EventFragment;
+    "Followed(address,uint256[],bytes[],uint256)": EventFragment;
     "FollowsApproved(address,uint256,address[],bool[],uint256)": EventFragment;
     "FollowsToggled(address,uint256[],bool[],uint256)": EventFragment;
     "GovernanceSet(address,address,address,uint256)": EventFragment;
-    "MirrorCreated(uint256,uint256,uint256,uint256,address,bytes,uint256)": EventFragment;
+    "MirrorCreated(uint256,uint256,uint256,uint256,bytes,address,bytes,uint256)": EventFragment;
     "ModuleBaseConstructed(address,uint256)": EventFragment;
     "ModuleGlobalsCurrencyWhitelisted(address,bool,bool,uint256)": EventFragment;
     "ModuleGlobalsGovernanceSet(address,address,uint256)": EventFragment;
@@ -41,6 +42,7 @@ export interface EventsInterface extends utils.Interface {
     "ProfileCreated(uint256,address,address,string,string,address,bytes,string,uint256)": EventFragment;
     "ProfileCreatorWhitelisted(address,bool,uint256)": EventFragment;
     "ProfileImageURISet(uint256,string,uint256)": EventFragment;
+    "ProfileMetadataSet(address,uint256,string,uint256)": EventFragment;
     "ReferenceModuleWhitelisted(address,bool,uint256)": EventFragment;
     "StateSet(address,uint8,uint8,uint256)": EventFragment;
   };
@@ -65,6 +67,7 @@ export interface EventsInterface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "FollowNFTInitialized"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "FollowNFTTransferred"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "FollowNFTURISet"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "Followed"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "FollowsApproved"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "FollowsToggled"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "GovernanceSet"): EventFragment;
@@ -82,6 +85,7 @@ export interface EventsInterface extends utils.Interface {
   getEvent(nameOrSignatureOrTopic: "ProfileCreated"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ProfileCreatorWhitelisted"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ProfileImageURISet"): EventFragment;
+  getEvent(nameOrSignatureOrTopic: "ProfileMetadataSet"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "ReferenceModuleWhitelisted"): EventFragment;
   getEvent(nameOrSignatureOrTopic: "StateSet"): EventFragment;
 }
@@ -138,13 +142,14 @@ export type CollectNFTTransferredEventFilter =
   TypedEventFilter<CollectNFTTransferredEvent>;
 
 export type CollectedEvent = TypedEvent<
-  [string, BigNumber, BigNumber, BigNumber, BigNumber, BigNumber],
+  [string, BigNumber, BigNumber, BigNumber, BigNumber, string, BigNumber],
   {
     collector: string;
     profileId: BigNumber;
     pubId: BigNumber;
     rootProfileId: BigNumber;
     rootPubId: BigNumber;
+    collectModuleData: string;
     timestamp: BigNumber;
   }
 >;
@@ -162,6 +167,7 @@ export type CommentCreatedEvent = TypedEvent<
     string,
     string,
     string,
+    string,
     BigNumber
   ],
   {
@@ -170,6 +176,7 @@ export type CommentCreatedEvent = TypedEvent<
     contentURI: string;
     profileIdPointed: BigNumber;
     pubIdPointed: BigNumber;
+    referenceModuleData: string;
     collectModule: string;
     collectModuleReturnData: string;
     referenceModule: string;
@@ -281,6 +288,18 @@ export type FollowNFTURISetEvent = TypedEvent<
 
 export type FollowNFTURISetEventFilter = TypedEventFilter<FollowNFTURISetEvent>;
 
+export type FollowedEvent = TypedEvent<
+  [string, BigNumber[], string[], BigNumber],
+  {
+    follower: string;
+    profileIds: BigNumber[];
+    followModuleDatas: string[];
+    timestamp: BigNumber;
+  }
+>;
+
+export type FollowedEventFilter = TypedEventFilter<FollowedEvent>;
+
 export type FollowsApprovedEvent = TypedEvent<
   [string, BigNumber, string[], boolean[], BigNumber],
   {
@@ -319,12 +338,22 @@ export type GovernanceSetEvent = TypedEvent<
 export type GovernanceSetEventFilter = TypedEventFilter<GovernanceSetEvent>;
 
 export type MirrorCreatedEvent = TypedEvent<
-  [BigNumber, BigNumber, BigNumber, BigNumber, string, string, BigNumber],
+  [
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    string,
+    string,
+    string,
+    BigNumber
+  ],
   {
     profileId: BigNumber;
     pubId: BigNumber;
     profileIdPointed: BigNumber;
     pubIdPointed: BigNumber;
+    referenceModuleData: string;
     referenceModule: string;
     referenceModuleReturnData: string;
     timestamp: BigNumber;
@@ -437,6 +466,14 @@ export type ProfileImageURISetEvent = TypedEvent<
 export type ProfileImageURISetEventFilter =
   TypedEventFilter<ProfileImageURISetEvent>;
 
+export type ProfileMetadataSetEvent = TypedEvent<
+  [string, BigNumber, string, BigNumber],
+  { user: string; profileId: BigNumber; metadata: string; timestamp: BigNumber }
+>;
+
+export type ProfileMetadataSetEventFilter =
+  TypedEventFilter<ProfileMetadataSetEvent>;
+
 export type ReferenceModuleWhitelistedEvent = TypedEvent<
   [string, boolean, BigNumber],
   { referenceModule: string; whitelisted: boolean; timestamp: BigNumber }
@@ -546,12 +583,13 @@ export interface Events extends BaseContract {
       timestamp?: null
     ): CollectNFTTransferredEventFilter;
 
-    "Collected(address,uint256,uint256,uint256,uint256,uint256)"(
+    "Collected(address,uint256,uint256,uint256,uint256,bytes,uint256)"(
       collector?: string | null,
       profileId?: BigNumberish | null,
       pubId?: BigNumberish | null,
       rootProfileId?: null,
       rootPubId?: null,
+      collectModuleData?: null,
       timestamp?: null
     ): CollectedEventFilter;
     Collected(
@@ -560,15 +598,17 @@ export interface Events extends BaseContract {
       pubId?: BigNumberish | null,
       rootProfileId?: null,
       rootPubId?: null,
+      collectModuleData?: null,
       timestamp?: null
     ): CollectedEventFilter;
 
-    "CommentCreated(uint256,uint256,string,uint256,uint256,address,bytes,address,bytes,uint256)"(
+    "CommentCreated(uint256,uint256,string,uint256,uint256,bytes,address,bytes,address,bytes,uint256)"(
       profileId?: BigNumberish | null,
       pubId?: BigNumberish | null,
       contentURI?: null,
       profileIdPointed?: null,
       pubIdPointed?: null,
+      referenceModuleData?: null,
       collectModule?: null,
       collectModuleReturnData?: null,
       referenceModule?: null,
@@ -581,6 +621,7 @@ export interface Events extends BaseContract {
       contentURI?: null,
       profileIdPointed?: null,
       pubIdPointed?: null,
+      referenceModuleData?: null,
       collectModule?: null,
       collectModuleReturnData?: null,
       referenceModule?: null,
@@ -713,6 +754,19 @@ export interface Events extends BaseContract {
       timestamp?: null
     ): FollowNFTURISetEventFilter;
 
+    "Followed(address,uint256[],bytes[],uint256)"(
+      follower?: string | null,
+      profileIds?: null,
+      followModuleDatas?: null,
+      timestamp?: null
+    ): FollowedEventFilter;
+    Followed(
+      follower?: string | null,
+      profileIds?: null,
+      followModuleDatas?: null,
+      timestamp?: null
+    ): FollowedEventFilter;
+
     "FollowsApproved(address,uint256,address[],bool[],uint256)"(
       owner?: string | null,
       profileId?: BigNumberish | null,
@@ -754,11 +808,12 @@ export interface Events extends BaseContract {
       timestamp?: null
     ): GovernanceSetEventFilter;
 
-    "MirrorCreated(uint256,uint256,uint256,uint256,address,bytes,uint256)"(
+    "MirrorCreated(uint256,uint256,uint256,uint256,bytes,address,bytes,uint256)"(
       profileId?: BigNumberish | null,
       pubId?: BigNumberish | null,
       profileIdPointed?: null,
       pubIdPointed?: null,
+      referenceModuleData?: null,
       referenceModule?: null,
       referenceModuleReturnData?: null,
       timestamp?: null
@@ -768,6 +823,7 @@ export interface Events extends BaseContract {
       pubId?: BigNumberish | null,
       profileIdPointed?: null,
       pubIdPointed?: null,
+      referenceModuleData?: null,
       referenceModule?: null,
       referenceModuleReturnData?: null,
       timestamp?: null
@@ -893,6 +949,19 @@ export interface Events extends BaseContract {
       imageURI?: null,
       timestamp?: null
     ): ProfileImageURISetEventFilter;
+
+    "ProfileMetadataSet(address,uint256,string,uint256)"(
+      user?: string | null,
+      profileId?: BigNumberish | null,
+      metadata?: null,
+      timestamp?: null
+    ): ProfileMetadataSetEventFilter;
+    ProfileMetadataSet(
+      user?: string | null,
+      profileId?: BigNumberish | null,
+      metadata?: null,
+      timestamp?: null
+    ): ProfileMetadataSetEventFilter;
 
     "ReferenceModuleWhitelisted(address,bool,uint256)"(
       referenceModule?: string | null,

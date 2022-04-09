@@ -619,7 +619,7 @@ export interface CollectNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    mint(to: string, overrides?: CallOverrides): Promise<void>;
+    mint(to: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     mintTimestampOf(
       tokenId: BigNumberish,

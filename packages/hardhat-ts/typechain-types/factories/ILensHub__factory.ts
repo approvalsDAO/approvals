@@ -26,7 +26,13 @@ const _abi = [
       },
     ],
     name: "collect",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -88,7 +94,13 @@ const _abi = [
       },
     ],
     name: "collectWithSig",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -117,13 +129,18 @@ const _abi = [
             type: "uint256",
           },
           {
+            internalType: "bytes",
+            name: "referenceModuleData",
+            type: "bytes",
+          },
+          {
             internalType: "address",
             name: "collectModule",
             type: "address",
           },
           {
             internalType: "bytes",
-            name: "collectModuleData",
+            name: "collectModuleInitData",
             type: "bytes",
           },
           {
@@ -133,7 +150,7 @@ const _abi = [
           },
           {
             internalType: "bytes",
-            name: "referenceModuleData",
+            name: "referenceModuleInitData",
             type: "bytes",
           },
         ],
@@ -143,7 +160,13 @@ const _abi = [
       },
     ],
     name: "comment",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -172,13 +195,18 @@ const _abi = [
             type: "uint256",
           },
           {
+            internalType: "bytes",
+            name: "referenceModuleData",
+            type: "bytes",
+          },
+          {
             internalType: "address",
             name: "collectModule",
             type: "address",
           },
           {
             internalType: "bytes",
-            name: "collectModuleData",
+            name: "collectModuleInitData",
             type: "bytes",
           },
           {
@@ -188,7 +216,7 @@ const _abi = [
           },
           {
             internalType: "bytes",
-            name: "referenceModuleData",
+            name: "referenceModuleInitData",
             type: "bytes",
           },
           {
@@ -225,7 +253,13 @@ const _abi = [
       },
     ],
     name: "commentWithSig",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -255,7 +289,7 @@ const _abi = [
           },
           {
             internalType: "bytes",
-            name: "followModuleData",
+            name: "followModuleInitData",
             type: "bytes",
           },
           {
@@ -270,7 +304,13 @@ const _abi = [
       },
     ],
     name: "createProfile",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -368,7 +408,13 @@ const _abi = [
       },
     ],
     name: "follow",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256[]",
+        name: "",
+        type: "uint256[]",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -425,7 +471,13 @@ const _abi = [
       },
     ],
     name: "followWithSig",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256[]",
+        name: "",
+        type: "uint256[]",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -950,13 +1002,18 @@ const _abi = [
             type: "uint256",
           },
           {
+            internalType: "bytes",
+            name: "referenceModuleData",
+            type: "bytes",
+          },
+          {
             internalType: "address",
             name: "referenceModule",
             type: "address",
           },
           {
             internalType: "bytes",
-            name: "referenceModuleData",
+            name: "referenceModuleInitData",
             type: "bytes",
           },
         ],
@@ -966,7 +1023,13 @@ const _abi = [
       },
     ],
     name: "mirror",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -990,13 +1053,18 @@ const _abi = [
             type: "uint256",
           },
           {
+            internalType: "bytes",
+            name: "referenceModuleData",
+            type: "bytes",
+          },
+          {
             internalType: "address",
             name: "referenceModule",
             type: "address",
           },
           {
             internalType: "bytes",
-            name: "referenceModuleData",
+            name: "referenceModuleInitData",
             type: "bytes",
           },
           {
@@ -1033,7 +1101,13 @@ const _abi = [
       },
     ],
     name: "mirrorWithSig",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -1058,7 +1132,7 @@ const _abi = [
           },
           {
             internalType: "bytes",
-            name: "collectModuleData",
+            name: "collectModuleInitData",
             type: "bytes",
           },
           {
@@ -1068,7 +1142,7 @@ const _abi = [
           },
           {
             internalType: "bytes",
-            name: "referenceModuleData",
+            name: "referenceModuleInitData",
             type: "bytes",
           },
         ],
@@ -1078,7 +1152,13 @@ const _abi = [
       },
     ],
     name: "post",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -1103,7 +1183,7 @@ const _abi = [
           },
           {
             internalType: "bytes",
-            name: "collectModuleData",
+            name: "collectModuleInitData",
             type: "bytes",
           },
           {
@@ -1113,7 +1193,7 @@ const _abi = [
           },
           {
             internalType: "bytes",
-            name: "referenceModuleData",
+            name: "referenceModuleInitData",
             type: "bytes",
           },
           {
@@ -1150,7 +1230,13 @@ const _abi = [
       },
     ],
     name: "postWithSig",
-    outputs: [],
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -1316,7 +1402,7 @@ const _abi = [
       },
       {
         internalType: "bytes",
-        name: "followModuleData",
+        name: "followModuleInitData",
         type: "bytes",
       },
     ],
@@ -1341,7 +1427,7 @@ const _abi = [
           },
           {
             internalType: "bytes",
-            name: "followModuleData",
+            name: "followModuleInitData",
             type: "bytes",
           },
           {

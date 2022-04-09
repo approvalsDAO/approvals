@@ -33,6 +33,11 @@ const _abi = [
   },
   {
     inputs: [],
+    name: "CannotCommentOnSelf",
+    type: "error",
+  },
+  {
+    inputs: [],
     name: "CannotInitImplementation",
     type: "error",
   },
@@ -99,6 +104,11 @@ const _abi = [
   {
     inputs: [],
     name: "ModuleDataMismatch",
+    type: "error",
+  },
+  {
+    inputs: [],
+    name: "NotDispatcher",
     type: "error",
   },
   {
@@ -189,7 +199,7 @@ const _abi = [
 ];
 
 const _bytecode =
-  "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212208fd774e3fcd4cde2356ab22206bfae8917a1a17a059db0870ba5c5c422bc061364736f6c634300080a0033";
+  "0x60566037600b82828239805160001a607314602a57634e487b7160e01b600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea2646970667358221220d70a4ae1a113ad3cc5a5ad9b76bd96133b3ab0e247a55dda1597be0124b31adc64736f6c634300080a0033";
 
 type ErrorsConstructorParams =
   | [signer?: Signer]

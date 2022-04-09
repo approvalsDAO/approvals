@@ -101,13 +101,13 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.LensHub__factory>;
     getContractFactory(
-      name: "EmptyCollectModule",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.EmptyCollectModule__factory>;
-    getContractFactory(
       name: "FeeCollectModule",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.FeeCollectModule__factory>;
+    getContractFactory(
+      name: "FreeCollectModule",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.FreeCollectModule__factory>;
     getContractFactory(
       name: "LimitedFeeCollectModule",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -140,6 +140,10 @@ declare module "hardhat/types/runtime" {
       name: "FollowValidatorFollowModuleBase",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.FollowValidatorFollowModuleBase__factory>;
+    getContractFactory(
+      name: "ProfileFollowModule",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ProfileFollowModule__factory>;
     getContractFactory(
       name: "FollowValidationModuleBase",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -209,9 +213,9 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.PublishingLogic__factory>;
     getContractFactory(
-      name: "LensPeripheryDataProvider",
+      name: "LensPeriphery",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LensPeripheryDataProvider__factory>;
+    ): Promise<Contracts.LensPeriphery__factory>;
     getContractFactory(
       name: "UIDataProvider",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -360,15 +364,15 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.LensHub>;
     getContractAt(
-      name: "EmptyCollectModule",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.EmptyCollectModule>;
-    getContractAt(
       name: "FeeCollectModule",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.FeeCollectModule>;
+    getContractAt(
+      name: "FreeCollectModule",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.FreeCollectModule>;
     getContractAt(
       name: "LimitedFeeCollectModule",
       address: string,
@@ -409,6 +413,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.FollowValidatorFollowModuleBase>;
+    getContractAt(
+      name: "ProfileFollowModule",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ProfileFollowModule>;
     getContractAt(
       name: "FollowValidationModuleBase",
       address: string,
@@ -495,10 +504,10 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.PublishingLogic>;
     getContractAt(
-      name: "LensPeripheryDataProvider",
+      name: "LensPeriphery",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.LensPeripheryDataProvider>;
+    ): Promise<Contracts.LensPeriphery>;
     getContractAt(
       name: "UIDataProvider",
       address: string,
