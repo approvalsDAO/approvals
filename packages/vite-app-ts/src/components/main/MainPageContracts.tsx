@@ -20,6 +20,7 @@ export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
   const ethersContext = useEthersContext();
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
   const yourContract = useAppContracts('YourContract', ethersContext.chainId);
+  const lensHub = useAppContracts('LensHub', ethersContext.chainId);
 
   if (ethersContext.account == null) {
     return <></>;
@@ -36,6 +37,12 @@ export const MainPageContracts: FC<IMainPageContractsProps> = (props) => {
         <GenericContract
           contractName="YourContract"
           contract={yourContract}
+          mainnetAdaptor={props.scaffoldAppProviders.mainnetAdaptor}
+          blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
+        />
+        <GenericContract
+          contractName="LensHub"
+          contract={lensHub}
           mainnetAdaptor={props.scaffoldAppProviders.mainnetAdaptor}
           blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
         />
