@@ -1,7 +1,7 @@
 import '@nomiclabs/hardhat-ethers';
 import { SignerWithAddress } from '@nomiclabs/hardhat-ethers/signers';
 import { Contract, ContractTransaction } from 'ethers';
-import fs from 'fs';
+import * as fs from 'fs';
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
