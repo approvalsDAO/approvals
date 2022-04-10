@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { createConnectorForExternalContract, createConnectorForHardhatContract } from 'eth-hooks/context';
 
+import lensAddresses from '../../../hardhat-ts/addresses.json';
+import lensHubJson from '../../../hardhat-ts/generated/artifacts/contracts/core/LensHub.sol/LensHub.json';
 import hardhatContractsJson from '../generated/hardhat_contracts.json';
 
 import { externalContractsAddressMap } from './externalContractsConfig';
@@ -8,6 +10,10 @@ import { externalContractsAddressMap } from './externalContractsConfig';
 import * as hardhatContracts from '~~/generated/contract-types';
 import * as externalContracts from '~~/generated/external-contracts/esm/types';
 
+hardhatContractsJson[31337].localhost.contracts['LensHub'] = {
+  address: lensAddresses['lensHub proxy'],
+  abi: lensHubJson.abi,
+};
 /**
  * ⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️⛳️
  * ### Instructions
@@ -30,7 +36,11 @@ export const contractConnectorConfig = () => {
         hardhatContractsJson
       ),
       LensHub: createConnectorForHardhatContract('LensHub', hardhatContracts.LensHub__factory, hardhatContractsJson),
-      ApprovalsGov: createConnectorForHardhatContract('ApprovalsGov', hardhatContracts.ApprovalsGov__factory, hardhatContractsJson),
+      ApprovalsGov: createConnectorForHardhatContract(
+        'ApprovalsGov',
+        hardhatContracts.ApprovalsGov__factory,
+        hardhatContractsJson
+      ),
 
       // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`
       DAI: createConnectorForExternalContract('DAI', externalContracts.DAI__factory, externalContractsAddressMap),
