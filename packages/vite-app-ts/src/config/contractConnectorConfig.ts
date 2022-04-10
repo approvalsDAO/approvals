@@ -41,6 +41,11 @@ export const contractConnectorConfig = () => {
         hardhatContracts.ApprovalsGov__factory,
         hardhatContractsJson
       ),
+      ApprovalLists: createConnectorForHardhatContract(
+        'ApprovalLists',
+        hardhatContracts.ApprovalLists__factory,
+        hardhatContractsJson
+      ),
 
       // 🙋🏽‍♂️ Add your external contracts here, make sure to define the address in `externalContractsConfig.ts`
       DAI: createConnectorForExternalContract('DAI', externalContracts.DAI__factory, externalContractsAddressMap),

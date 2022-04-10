@@ -9,7 +9,13 @@ import { useEthersContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 
-import { MainPageMenu, MainPageContracts, MainPageGovContracts, MainPageFooter, MainPageHeader } from './components/main';
+import {
+  MainPageMenu,
+  MainPageContracts,
+  MainPageGovContracts,
+  MainPageFooter,
+  MainPageHeader,
+} from './components/main';
 import { useScaffoldHooksExamples as useScaffoldHooksExamples } from './components/main/hooks/useScaffoldHooksExamples';
 
 import { useBurnerFallback } from '~~/components/main/hooks/useBurnerFallback';

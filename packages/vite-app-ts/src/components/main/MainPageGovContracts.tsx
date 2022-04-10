@@ -19,7 +19,7 @@ export interface IMainPageContractsProps {
 export const MainPageGovContracts: FC<IMainPageContractsProps> = (props) => {
   const ethersContext = useEthersContext();
   const mainnetDai = useAppContracts('DAI', NETWORKS.mainnet.chainId);
-  const yourContract = useAppContracts('YourContract', ethersContext.chainId);
+  const approvalLists = useAppContracts('ApprovalLists', ethersContext.chainId);
   const approvalsGov = useAppContracts('ApprovalsGov', ethersContext.chainId);
 
   if (ethersContext.account == null) {
@@ -34,6 +34,12 @@ export const MainPageGovContracts: FC<IMainPageContractsProps> = (props) => {
           this <Contract/> component will automatically parse your ABI
           and give you a form to interact with it locally
         ********** */}
+        <GenericContract
+          contractName="ApprovalLists"
+          contract={approvalLists}
+          mainnetAdaptor={props.scaffoldAppProviders.mainnetAdaptor}
+          blockExplorer={props.scaffoldAppProviders.targetNetwork.blockExplorer}
+        />
         <GenericContract
           contractName="ApprovalsGov"
           contract={approvalsGov}

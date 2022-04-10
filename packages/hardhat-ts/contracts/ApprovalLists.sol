@@ -27,6 +27,9 @@ contract ApprovalLists is ERC721, ERC721Enumerable, ERC721Burnable, Ownable {
       // TODO check that it isn't already on there
       lists[tokenId].push(addr);
     }
+    function listGet(uint256 tokenId) public view returns (address[] memory) {
+      return lists[tokenId];
+    }
 
     // The following functions are overrides required by Solidity.
 
