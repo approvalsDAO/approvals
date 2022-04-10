@@ -45,6 +45,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20__factory>;
     getContractFactory(
+      name: "ERC721",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC721__factory>;
+    getContractFactory(
       name: "IERC721Enumerable",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC721Enumerable__factory>;
@@ -125,6 +129,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.TimedFeeCollectModule__factory>;
     getContractFactory(
+      name: "VoteCollectModule",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.VoteCollectModule__factory>;
+    getContractFactory(
       name: "FeeModuleBase",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.FeeModuleBase__factory>;
@@ -140,6 +148,10 @@ declare module "hardhat/types/runtime" {
       name: "FollowValidatorFollowModuleBase",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.FollowValidatorFollowModuleBase__factory>;
+    getContractFactory(
+      name: "NFTFollowModule",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.NFTFollowModule__factory>;
     getContractFactory(
       name: "ProfileFollowModule",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -241,6 +253,10 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.MockLensHubV2BadRevision__factory>;
     getContractFactory(
+      name: "MockNft",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.MockNft__factory>;
+    getContractFactory(
       name: "MockProfileCreationProxy",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.MockProfileCreationProxy__factory>;
@@ -293,6 +309,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC20>;
+    getContractAt(
+      name: "ERC721",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC721>;
     getContractAt(
       name: "IERC721Enumerable",
       address: string,
@@ -394,6 +415,11 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.TimedFeeCollectModule>;
     getContractAt(
+      name: "VoteCollectModule",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.VoteCollectModule>;
+    getContractAt(
       name: "FeeModuleBase",
       address: string,
       signer?: ethers.Signer
@@ -413,6 +439,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.FollowValidatorFollowModuleBase>;
+    getContractAt(
+      name: "NFTFollowModule",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.NFTFollowModule>;
     getContractAt(
       name: "ProfileFollowModule",
       address: string,
@@ -538,6 +569,11 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.MockLensHubV2BadRevision>;
+    getContractAt(
+      name: "MockNft",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.MockNft>;
     getContractAt(
       name: "MockProfileCreationProxy",
       address: string,

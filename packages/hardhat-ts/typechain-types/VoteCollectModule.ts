@@ -7,6 +7,8 @@ import {
   BigNumberish,
   BytesLike,
   CallOverrides,
+  ContractTransaction,
+  Overrides,
   PopulatedTransaction,
   Signer,
   utils,
@@ -15,7 +17,7 @@ import { FunctionFragment, Result } from "@ethersproject/abi";
 import { Listener, Provider } from "@ethersproject/providers";
 import { TypedEventFilter, TypedEvent, TypedListener, OnEvent } from "./common";
 
-export interface EmptyCollectModuleInterface extends utils.Interface {
+export interface VoteCollectModuleInterface extends utils.Interface {
   functions: {
     "HUB()": FunctionFragment;
     "initializePublicationCollectModule(uint256,uint256,bytes)": FunctionFragment;
@@ -45,12 +47,12 @@ export interface EmptyCollectModuleInterface extends utils.Interface {
   events: {};
 }
 
-export interface EmptyCollectModule extends BaseContract {
+export interface VoteCollectModule extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: EmptyCollectModuleInterface;
+  interface: VoteCollectModuleInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,
@@ -78,8 +80,8 @@ export interface EmptyCollectModule extends BaseContract {
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
 
     processCollect(
       referrerProfileId: BigNumberish,
@@ -87,8 +89,8 @@ export interface EmptyCollectModule extends BaseContract {
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<[void]>;
+      overrides?: Overrides & { from?: string | Promise<string> }
+    ): Promise<ContractTransaction>;
   };
 
   HUB(overrides?: CallOverrides): Promise<string>;
@@ -97,8 +99,8 @@ export interface EmptyCollectModule extends BaseContract {
     profileId: BigNumberish,
     pubId: BigNumberish,
     data: BytesLike,
-    overrides?: CallOverrides
-  ): Promise<string>;
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
   processCollect(
     referrerProfileId: BigNumberish,
@@ -106,8 +108,8 @@ export interface EmptyCollectModule extends BaseContract {
     profileId: BigNumberish,
     pubId: BigNumberish,
     data: BytesLike,
-    overrides?: CallOverrides
-  ): Promise<void>;
+    overrides?: Overrides & { from?: string | Promise<string> }
+  ): Promise<ContractTransaction>;
 
   callStatic: {
     HUB(overrides?: CallOverrides): Promise<string>;
@@ -138,7 +140,7 @@ export interface EmptyCollectModule extends BaseContract {
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
-      overrides?: CallOverrides
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
 
     processCollect(
@@ -147,7 +149,7 @@ export interface EmptyCollectModule extends BaseContract {
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
-      overrides?: CallOverrides
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<BigNumber>;
   };
 
@@ -158,7 +160,7 @@ export interface EmptyCollectModule extends BaseContract {
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
-      overrides?: CallOverrides
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
 
     processCollect(
@@ -167,7 +169,7 @@ export interface EmptyCollectModule extends BaseContract {
       profileId: BigNumberish,
       pubId: BigNumberish,
       data: BytesLike,
-      overrides?: CallOverrides
+      overrides?: Overrides & { from?: string | Promise<string> }
     ): Promise<PopulatedTransaction>;
   };
 }
