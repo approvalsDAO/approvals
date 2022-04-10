@@ -40,7 +40,6 @@ const func: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const addrs = getAddrs();
   const lensHub = LensHub__factory.connect(addrs['lensHub proxy'], governance);
   const profile1FollowNFT = await lensHub.getFollowNFT(1);
-  console.log(profile1FollowNFT);
   //const profile1FollowNFT = "0x7046717d32AfcA450DC5D6e75724D4282DFAd16E";
   await deploy('ApprovalsGov', {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
@@ -50,6 +49,23 @@ const func: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
     log: true,
   });
 
+  const ApprovalsGov = await hre.ethers.getContract("ApprovalsGov", deployer);
+  const ApprovalLists = await hre.ethers.getContract("ApprovalLists", deployer);
+  const tokenAddress = ApprovalLists.address;
+  const listTokenId = 0;
+  const testAddr = '0x71B33F134342043d7C10C7871c31d9451EB45a4E';
+  const listAddCalldata = ApprovalLists.interface.encodeFunctionData('listAdd', [listTokenId, testAddr]);
+  console.log('proposing: ', listAddCalldata);
+  const txResp = await ApprovalsGov.propose(
+    [tokenAddress],
+    [0],
+    [listAddCalldata],
+    'Proposal #3: Approve (0) ' + testAddr,
+  );
+  const txRcpt = await txResp.wait();
+  console.log('proposal ID from event log: ', txRcpt.events[0].args);
+
+  // This will create a new proposal, with a proposal id that is obtained by hashing together the proposal data, and which will also be found in an event in the logs of the transaction.
   /*
     // Getting a previously deployed contract
     const YourContract = await ethers.getContract("YourContract", deployer);
