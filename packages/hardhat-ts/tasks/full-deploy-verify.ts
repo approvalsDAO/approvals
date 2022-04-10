@@ -10,6 +10,7 @@ import {
   FreeCollectModule__factory,
   FeeCollectModule__factory,
   FeeFollowModule__factory,
+  NFTFollowModule__factory,
   FollowerOnlyReferenceModule__factory,
   FollowNFT__factory,
   InteractionLogic__factory,
@@ -24,6 +25,7 @@ import {
   LensPeriphery__factory,
   UIDataProvider__factory,
   ProfileFollowModule__factory,
+  VoteCollectModule__factory,
 } from '../typechain-types';
 import { deployWithVerify, waitForTx } from './helpers/utils';
 
@@ -262,6 +264,15 @@ task('full-deploy-verify', 'deploys the entire Lens Protocol with explorer verif
       'contracts/misc/UIDataProvider.sol:UIDataProvider'
     );
 
+    console.log('\n\t-- Deploying NFTFollowModule --');
+    const nftFollowModule = await deployWithVerify(
+      new NFTFollowModule__factory(deployer).deploy(lensHub.address, {
+        nonce: deployerNonce++,
+      }),
+      [lensHub.address],
+      'contracts/core/modules/follow/NFTFollowModule.sol:NFTFollowModule'
+    );
+
     // Whitelist the collect modules
     console.log('\n\t-- Whitelisting Collect Modules --');
     let governanceNonce = await ethers.provider.getTransactionCount(governance.address);
@@ -299,6 +310,9 @@ task('full-deploy-verify', 'deploys the entire Lens Protocol with explorer verif
     );
     await waitForTx(
       lensHub.whitelistFollowModule(profileFollowModule.address, true, { nonce: governanceNonce++ })
+    );
+    await waitForTx(
+      lensHub.whitelistFollowModule(nftFollowModule.address, true, {nonce: governanceNonce++ })
     );
     // --- COMMENTED OUT AS THIS IS NOT A LAUNCH MODULE ---
     // await waitForTx(
@@ -338,6 +352,7 @@ task('full-deploy-verify', 'deploys the entire Lens Protocol with explorer verif
       // 'approval follow module': approvalFollowModule.address,
       'follower only reference module': followerOnlyReferenceModule.address,
       'UI data provider': uiDataProvider.address,
+      'NFTFollowModule' : nftFollowModule.address,
     };
     const json = JSON.stringify(addrs, null, 2);
     console.log(json);
