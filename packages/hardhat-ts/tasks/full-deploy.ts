@@ -24,6 +24,7 @@ import {
   LensPeriphery__factory,
   UIDataProvider__factory,
   ProfileFollowModule__factory,
+  NFTFollowModule__factory,
 } from '../typechain-types';
 import { deployContract, waitForTx } from './helpers/utils';
 
@@ -204,6 +205,13 @@ task('full-deploy', 'deploys the entire Lens Protocol').setAction(async ({}, hre
     })
   );
 
+  console.log('\n\t-- Deploying NFTFollowModule --');
+  const nftFollowModule = await deployContract(
+    new NFTFollowModule__factory(deployer).deploy(lensHub.address, {
+      nonce: deployerNonce++,
+    })
+  );
+
   // Whitelist the collect modules
   console.log('\n\t-- Whitelisting Collect Modules --');
   let governanceNonce = await ethers.provider.getTransactionCount(governance.address);
@@ -239,6 +247,9 @@ task('full-deploy', 'deploys the entire Lens Protocol').setAction(async ({}, hre
   );
   await waitForTx(
     lensHub.whitelistFollowModule(profileFollowModule.address, true, { nonce: governanceNonce++ })
+  );
+  await waitForTx(
+    lensHub.whitelistFollowModule(nftFollowModule.address, true, {nonce: governanceNonce++ })
   );
   // --- COMMENTED OUT AS THIS IS NOT A LAUNCH MODULE ---
   // await waitForTx(
@@ -284,6 +295,7 @@ task('full-deploy', 'deploys the entire Lens Protocol').setAction(async ({}, hre
     // 'approval follow module': approvalFollowModule.address,
     'follower only reference module': followerOnlyReferenceModule.address,
     'UI data provider': uiDataProvider.address,
+    'NFTFollowModule' : nftFollowModule.address,
   };
   const json = JSON.stringify(addrs, null, 2);
   console.log(json);
